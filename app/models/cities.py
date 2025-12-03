@@ -9,4 +9,7 @@ if TYPE_CHECKING:
 
 
 class CityModel(Base):
-    ...
+    __tablename__ = "cities"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)

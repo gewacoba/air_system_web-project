@@ -14,4 +14,4 @@ class TicketModel(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False)
-    airline_ticket: Mapped[int] = mapped_column(ForeignKey("airline_tickets.id"), nullable=False)
+    flight: Mapped[int] = mapped_column(ForeignKey("flights.id"), nullable=False)

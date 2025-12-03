@@ -9,4 +9,5 @@ if TYPE_CHECKING:
 
 
 class Air_companyModel(Base):
-    ...
+    __tablename__ = "air_companies"
+    name: Mapped[str] = mapped_column(String(150), unique=True, nullable=False)
