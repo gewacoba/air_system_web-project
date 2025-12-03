@@ -13,6 +13,11 @@ from app.config import settings
 # Пример:
 from app.models.users import UserModel
 from app.models.roles import RoleModel
+from app.models.air_companies import Air_companyModel
+from app.models.cities import CityModel
+from app.models.flights import FlightModel
+from app.models.planes import PlaneModel
+from app.models.tickets import TicketModel
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
