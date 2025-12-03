@@ -9,17 +9,17 @@ if TYPE_CHECKING:
     from app.models.roles import RoleModel
 
 
-class Airline_ticketModel(Base):
-    __tablename__ = "airline_tickets"
+class FlightModel(Base):
+    __tablename__ = "flights"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
-    company_id: ...
-    departure_city_id: ...
-    landing_city_id: ...
-    plane_id: ...
+
+    company_id: Mapped[int] = mapped_column(Integer, ForeignKey("air_companies.id"),  nullable=False)
+    departure_city_id: Mapped[int] = mapped_column(Integer, ForeignKey("cities.id"), nullable=False)
+    landing_city_id: Mapped[int] = mapped_column(Integer, ForeignKey("cities.id"), nullable=False)
+    plane_id: Mapped[int] = mapped_column(Integer, ForeignKey("planes.id"), nullable=False)
+
     cost_of_ticket: Mapped[int] = mapped_column(Integer, nullable = False)
     departure: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     landing: Mapped[datetime] = mapped_column(DateTime, nullable=False)
-    # user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
-    # quantity: Mapped[int] = mapped_column(Integer, nullable=False)

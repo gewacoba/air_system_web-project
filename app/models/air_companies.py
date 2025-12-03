@@ -10,4 +10,5 @@ if TYPE_CHECKING:
 
 class Air_companyModel(Base):
     __tablename__ = "air_companies"
+    id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(150), unique=True, nullable=False)
