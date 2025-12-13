@@ -54,3 +54,5 @@ async def check_is_admin(db: DBDep, user_id:UserIdDep):
         return True
     else:
         raise IsNotAdminHTTPError
+    
+IsAdminDep = Annotated[int, Depends(check_is_admin)]
