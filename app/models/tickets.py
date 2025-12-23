@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class TicketModel(Base):
-    __tablename__ = "ticekts"
+    __tablename__ = "tickets"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
