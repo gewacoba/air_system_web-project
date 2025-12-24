@@ -3,7 +3,7 @@ from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 
 
-router = APIRouter(prefix="/web", tags=["Фронтенд"])
+router = APIRouter(prefix="/web", tags=["Фронтенд (http://127.0.0.1:8000/web/index)"])
 templates = Jinja2Templates(directory="app/templates")
 
 

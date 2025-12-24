@@ -10,6 +10,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../static/styles/styles.css">
+  <style>
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .faq-answer.expanded {
+      max-height: 300px; /* достаточно места для контента */
+    }
+    
+    .chev.rotated {
+      transform: rotate(90deg);
+      transition: transform 0.3s ease;
+    }
+  </style>
 </head>
   <body>
   <header class="site-header">
@@ -125,31 +141,7 @@
 
   <script>
     document.getElementById('yearSupport').textContent = new Date().getFullYear();
-    
-    // Добавляем функциональность для FAQ
-    document.addEventListener('DOMContentLoaded', function() {
-      const faqQuestions = document.querySelectorAll('.faq-question');
-      
-      faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-          const faqItem = this.parentElement;
-          const answer = faqItem.querySelector('.faq-answer');
-          const chev = this.querySelector('.chev');
-          
-          // Переключаем классы для анимации
-          answer.classList.toggle('expanded');
-          chev.classList.toggle('rotated');
-          
-          // Изменяем символ в зависимости от состояния
-          if (answer.classList.contains('expanded')) {
-            chev.textContent = '▾';
-          } else {
-            chev.textContent = '▸';
-          }
-        });
-      });
-    });
- </script>
+  </script>
   <script src="../static/js/app.js" type="module"></script>
 </body>
 </html>
