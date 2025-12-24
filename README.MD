@@ -22,4 +22,5 @@
 4. Запустите сервер FastAPI:  
     ```bash
    uvicorn main:app
-
+5. Перейти по ссылке:
+   http://127.0.0.1:8000/web/index
