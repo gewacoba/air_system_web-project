@@ -14,3 +14,5 @@ class PlaneModel(Base):
     name: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
     seats_quantity: Mapped[int] = mapped_column(Integer, nullable=False)
     image_url: Mapped[str] = mapped_column(String(2048), nullable=False)
+
+    

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>КрыльяОнлайн — бронирование авиабилетов</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../static/styles/styles.css">
+  <script type="importmap">
+  {
+    "imports": {}
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <img src="../static/pictures/logo.png" alt="КрыльяОнлайн" class="logo">
+      <div class="brand">
+        <h1>КрыльяОнлайн</h1>
+        <p class="tag">Быстро. Надёжно. Удобно.</p>
+      </div>
+    </div>
+
+    <nav class="header-right">
+      <button class="lang-btn" title="Выбрать язык">
+        <img src="../static/pictures/earth.png" alt="язык" class="icon">
+        <span>RU</span>
+      </button>
+
+      <a class="profile-btn" href="./profile.html" title="Профиль">
+        <img src="../static/pictures/profile.png" alt="профиль" class="profile-icon">
+      </a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <div class="hero-left">
+        <h2>Найдите лучшие авиабилеты</h2>
+        <p class="lead">Сравните цены, выберите рейс и забронируйте онлайн за пару минут.</p>
+
+        <form id="searchForm" class="search-form" autocomplete="off">
+          <div class="row">
+            <label class="field">
+              <span class="label-text">Откуда</span>
+              <input type="text" name="from" placeholder="Город или аэропорт" required>
+            </label>
+
+            <label class="field">
+              <span class="label-text">Куда</span>
+              <input type="text" name="to" placeholder="Город или аэропорт" required>
+            </label>
+          </div>
+
+          <div class="row">
+            <label class="field">
+              <span class="label-text">Туда</span>
+              <input type="date" name="depart" required>
+            </label>
+
+            <label class="field">
+              <span class="label-text">Обратно</span>
+              <input type="date" name="return">
+            </label>
+          </div>
+
+          <div class="row bottom-row">
+            <label class="field passengers">
+              <span class="label-text">Пассажиры</span>
+              <select name="passengers">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </label>
+
+            <div class="actions">
+              <button type="submit" class="btn btn-primary">Найти билеты</button>
+              <button type="button" class="btn btn-ghost" id="exploreBtn">Популярные рейсы</button>
+            </div>
+          </div>
+        </form>
+
+        <ul class="features">
+          <li><span class="dot" style="background: rgb(250,201,72)"></span> Лучшие предложения</li>
+          <li><span class="dot" style="background: rgb(250,67,49)"></span> Поддержка 24/7</li>
+          <li><span class="dot" style="background: rgb(250,233,70)"></span> Удобные платежи</li>
+        </ul>
+      </div>
+
+      <div class="hero-right">
+        <div class="plane-wrap">
+          <img src="../static/pictures/plane (1).png" alt="самолёт фон" class="plane plane-bg">
+        </div>
+      </div>
+    </section>
+
+    <section class="popular" id="popular">
+      <h3>Популярные направления</h3>
+      <div class="cards">
+        <article class="card">
+          <img src="../static/pictures/takeoff.png" class="card-icon takeoff" alt="">
+          <div>
+            <strong>Москва → Санкт-Петербург</strong>
+            <p class="muted">от 3 200 ₽</p>
+          </div>
+          <img src="../static/pictures/plane-landing.png" class="card-icon card-icon-right" alt="">
+          <!-- DEV: ticket shortcut for this specific card (easy to remove via data-dev="true") -->
+          <a href="./ticket1.html" class="dev-ticket-btn" data-dev="true" title="Открыть билет">Открыть билет</a>
+        </article>
+
+        <article class="card">
+          <img src="../static/pictures/takeoff.png" class="card-icon takeoff" alt="">
+          <div>
+            <strong>Москва → Сочи</strong>
+            <p class="muted">от 4 500 ₽</p>
+          </div>
+          <img src="../static/pictures/plane-landing.png" class="card-icon card-icon-right" alt="">
+          <a href="./ticket2.html" class="dev-ticket-btn" data-dev="true" title="Открыть билет">Открыть билет</a>
+        </article>
+
+        <article class="card">
+          <img src="../static/pictures/takeoff.png" class="card-icon takeoff" alt="">
+          <div>
+            <strong>Москва → Минск</strong>
+            <p class="muted">от 5 100 ₽</p>
+          </div>
+          <img src="../static/pictures/plane-landing.png" class="card-icon card-icon-right" alt="">
+          <a href="./ticket3.html" class="dev-ticket-btn" data-dev="true" title="Открыть билет">Открыть билет</a>
+        </article>
+      </div>
+
+      <div class="cards" style="margin-top:12px">
+        <article class="card">
+          <img src="../static/pictures/takeoff.png" class="card-icon takeoff" alt="">
+          <div>
+            <strong>Москва → Казань</strong>
+            <p class="muted">от 3 800 ₽</p>
+          </div>
+          <img src="../static/pictures/plane-landing.png" class="card-icon card-icon-right" alt="">
+          <a href="./ticket4.html" class="dev-ticket-btn" data-dev="true" title="Открыть билет">Открыть билет</a>
+        </article>
+
+        <article class="card">
+          <img src="../static/pictures/takeoff.png" class="card-icon takeoff" alt="">
+          <div>
+            <strong>Москва → Калининград</strong>
+            <p class="muted">от 4 200 ₽</p>
+          </div>
+          <img src="../static/pictures/plane-landing.png" class="card-icon card-icon-right" alt="">
+          <a href="./ticket5.html" class="dev-ticket-btn" data-dev="true" title="Открыть билет">Открыть билет</a>
+        </article>
+
+        <article class="card">
+          <img src="../static/pictures/takeoff.png" class="card-icon takeoff" alt="">
+          <div>
+            <strong>Москва → Екатеринбург</strong>
+            <p class="muted">от 6 500 ₽</p>
+          </div>
+          <img src="../static/pictures/plane-landing.png" class="card-icon card-icon-right" alt="">
+          <a href="./ticket6.html" class="dev-ticket-btn" data-dev="true" title="Открыть билет">Открыть билет</a>
+        </article>
+      </div>
+
+      <!-- NEW: additional row of three popular directions -->
+      <div class="cards" style="margin-top:12px">
+        <article class="card">
+          <img src="../static/pictures/takeoff.png" class="card-icon takeoff" alt="">
+          <div>
+            <strong>Москва → Новосибирск</strong>
+            <p class="muted">от 7 200 ₽</p>
+          </div>
+          <img src="../static/pictures/plane-landing.png" class="card-icon card-icon-right" alt="">
+          <a href="./ticket7.html" class="dev-ticket-btn" data-dev="true" title="Открыть билет">Открыть билет</a>
+        </article>
+
+        <article class="card">
+          <img src="../static/pictures/takeoff.png" class="card-icon takeoff" alt="">
+          <div>
+            <strong>Москва → Владивосток</strong>
+            <p class="muted">от 11 500 ₽</p>
+          </div>
+          <img src="../static/pictures/plane-landing.png" class="card-icon card-icon-right" alt="">
+          <a href="./ticket8.html" class="dev-ticket-btn" data-dev="true" title="Открыть билет">Открыть билет</a>
+        </article>
+
+        <article class="card">
+          <img src="../static/pictures/takeoff.png" class="card-icon takeoff" alt="">
+          <div>
+            <strong>Москва → Симферополь</strong>
+            <p class="muted">от 4 900 ₽</p>
+          </div>
+          <img src="../static/pictures/plane-landing.png" class="card-icon card-icon-right" alt="">
+          <a href="./ticket9.html" class="dev-ticket-btn" data-dev="true" title="Открыть билет">Открыть билет</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- support button (added below popular section, above footer) -->
+  <div class="support-wrap">
+    <a class="support-btn" href="./support.html" title="Поддержка">
+      <img src="../static/pictures/support (1).png" alt="Поддержка" class="support-icon">
+      <span>Поддержка</span>
+    </a>
+  </div>
+
+
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> КрыльяОнлайн — Все права защищены</p>
+  </footer>
+
+  <script src="../static/js/app.js" type="module"></script>
+</body>
+</html>

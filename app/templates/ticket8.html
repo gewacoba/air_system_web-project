@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Билет — КрыльяОнлайн</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../static/styles/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <a href="./index.html" class="logo-link" title="КрыльяОнлайн">
+        <img src="../static/pictures/logo.png" alt="КрыльяОнлайн" class="logo">
+      </a>
+      <div class="brand">
+        <h1>КрыльяОнлайн</h1>
+        <p class="tag">Билет</p>
+      </div>
+    </div>
+
+    <nav class="header-right">
+      <a class="btn btn-ghost" href="./index.html" title="Назад">← На главную</a>
+      <a class="btn btn-ghost" href="./profile.html" title="Профиль" style="margin-left:8px">Профиль</a>
+    </nav>
+  </header>
+
+  <main class="main" style="max-width:720px;margin:28px auto;padding:18px">
+    <section class="ticket" style="flex-direction:column;align-items:stretch;gap:14px;padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <div>
+          <div class="small-muted">Маршрут</div>
+          <strong style="font-size:18px">Москва (SVO) → Владивосток (VVO)</strong>
+        </div>
+        <img src="../static/pictures/plane-landing.png" alt="" style="width:44px;height:44px;opacity:0.95">
+      </div>
+
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div>
+          <div class="small-muted">Вылет</div>
+          <div>03 фев 2026 · 21:55</div>
+        </div>
+        <div>
+          <div class="small-muted">Тариф</div>
+          <div>Эконом</div>
+        </div>
+        <div>
+          <div class="small-muted">Место</div>
+          <div>11B</div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px">
+        <div>
+          <div class="small-muted">Цена</div>
+          <div style="font-size:18px;font-weight:700">от 11 500 ₽</div>
+        </div>
+
+        <div style="margin-left:auto">
+          <button id="buyBtn" class="btn btn-primary" style="padding:12px 18px;font-size:16px;border-radius:10px">Купить билет</button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <div id="paymentPanel" class="payment-panel" aria-hidden="true" style="display:none;max-width:720px;margin:12px auto;padding:14px;background:rgba(255,255,255,0.98);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.08)">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px">
+      <div style="font-weight:700">Оплата билета</div>
+      <button id="panelClose" class="modal-close" aria-label="Закрыть" style="background:transparent;border:0;font-size:20px;cursor:pointer;padding:6px;border-radius:8px">✕</button>
+    </div>
+
+    <form id="paymentForm" novalidate>
+      <label style="display:block;margin-bottom:10px">
+        <div class="small-muted" style="margin-bottom:6px">Номер карты</div>
+        <input id="cardNumber" name="cardNumber" type="text" inputmode="numeric" pattern="[0-9\s]{13,19}" placeholder="1234 5678 9012 3456" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:15px">
+      </label>
+
+      <div style="display:flex;gap:8px">
+        <label style="flex:1;display:block">
+          <div class="small-muted" style="margin-bottom:6px">Срок (MM/YY)</div>
+          <input id="cardExp" name="cardExp" type="text" inputmode="numeric" pattern="(0[1-9]|1[0-2])\/\d{2}" placeholder="MM/YY" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:15px">
+        </label>
+
+        <label style="width:120px;display:block">
+          <div class="small-muted" style="margin-bottom:6px">CVC</div>
+          <input id="cardCvc" name="cardCvc" type="password" inputmode="numeric" pattern="\d{3,4}" placeholder="123" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:15px">
+        </label>
+      </div>
+
+      <div style="margin-top:12px" class="small-muted">Сумма к оплате</div>
+      <div style="font-size:18px;font-weight:700;margin-top:6px">11 500 ₽</div>
+
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px">
+        <button type="button" id="panelCancel" class="btn btn-ghost">Отмена</button>
+        <button type="submit" id="payBtn" class="btn btn-primary">Оплатить 11 500 ₽</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="site-footer" style="margin-top:28px">
+    <p>© <span id="yearTicket"></span> КрыльяОнлайн — Все права защищены</p>
+  </footer>
+
+  <script>
+    document.getElementById('yearTicket').textContent = new Date().getFullYear();
+
+    (function(){
+      const buyBtn = document.getElementById('buyBtn');
+      const panel = document.getElementById('paymentPanel');
+      const closeBtn = document.getElementById('panelClose');
+      const cancelBtn = document.getElementById('panelCancel');
+      const paymentForm = document.getElementById('paymentForm');
+
+      function openPanel(){
+        if (!panel) return;
+        panel.style.display = 'block';
+        panel.setAttribute('aria-hidden','false');
+        const first = document.getElementById('cardNumber');
+        first && first.focus();
+        setTimeout(()=> panel.scrollIntoView({behavior:'smooth', block:'start'}), 80);
+      }
+      function closePanel(){
+        if (!panel) return;
+        panel.style.display = 'none';
+        panel.setAttribute('aria-hidden','true');
+        buyBtn && buyBtn.focus();
+      }
+
+      function formatCardNumber(e){
+        const el = e.target;
+        let v = el.value.replace(/\D/g,'').slice(0,19);
+        el.value = v.replace(/(\d{4})(?=\d)/g,'$1 ');
+      }
+
+      const cardInput = document.getElementById('cardNumber');
+      cardInput && cardInput.addEventListener('input', formatCardNumber);
+
+      buyBtn && buyBtn.addEventListener('click', ()=>{
+        if (panel && panel.style.display !== 'none') closePanel();
+        else openPanel();
+      });
+
+      closeBtn && closeBtn.addEventListener('click', closePanel);
+      cancelBtn && cancelBtn.addEventListener('click', closePanel);
+
+      paymentForm && paymentForm.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const num = document.getElementById('cardNumber').value.replace(/\s/g,'');
+        const exp = document.getElementById('cardExp').value.trim();
+        const cvc = document.getElementById('cardCvc').value.trim();
+        if (num.length < 13 || !/^\d{3,4}$/.test(cvc) || !/^(0[1-9]|1[0-2])\/\d{2}$/.test(exp)){
+          alert('Проверьте данные карты');
+          return;
+        }
+        alert('Платёж на 11 500 ₽ успешно выполнен (имитация).');
+        closePanel();
+      });
+
+      document.addEventListener('keydown', (e)=>{
+        if (e.key === 'Escape') closePanel();
+      });
+    })();
+  </script>
+</body>
+</html>

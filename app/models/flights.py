@@ -23,3 +23,7 @@ class FlightModel(Base):
     cost_of_ticket: Mapped[int] = mapped_column(Integer, nullable = False)
     departure: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     landing: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+
+
+
+    

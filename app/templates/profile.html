@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Профиль — КрыльяОнлайн</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../static/styles/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <a href="./index.html" class="logo-link" title="КрыльяОнлайн">
+        <img src="../static/pictures/logo.png" alt="КрыльяОнлайн" class="logo">
+      </a>
+      <div class="brand">
+        <h1>КрыльяОнлайн</h1>
+        <p class="tag">Мой профиль</p>
+      </div>
+    </div>
+
+    <nav class="header-right">
+      <a class="btn btn-ghost" href="./index.html" title="Назад">← На главную</a>
+    </nav>
+  </header>
+
+  <main class="main profile-page">
+    <section class="profile-card">
+      <div class="profile-avatar">
+        <img src="../static/pictures/profile.png" alt="Аватар">
+      </div>
+      <div class="profile-info">
+        <h2 id="userName">Иван Иванов</h2>
+        <p class="muted" id="userEmail">ivan.ivanov@example.com</p>
+        <p class="small-muted">Член с 2023</p>
+      </div>
+    </section>
+
+    <section class="tickets">
+      <h3>Активные билеты</h3>
+
+      <div class="ticket-list">
+        <article class="ticket">
+          <img src="../static/pictures/plane-landing.png" alt="" class="ticket-icon">
+          <div class="ticket-body">
+            <div class="ticket-row">
+              <strong>Москва (SVO) → Санкт-Петербург (LED)</strong>
+              <span class="muted">№ заказа 384521</span>
+            </div>
+            <div class="ticket-row small-muted">Вылет: 12 ноя 2025 · 09:20 · Авиакомпания: Крылья</div>
+            <div class="ticket-actions">
+              <button class="btn btn-ghost">Посмотреть</button>
+              <button class="btn">Печать</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <img src="../static/pictures/plane-landing.png" alt="" class="ticket-icon">
+          <div class="ticket-body">
+            <div class="ticket-row">
+              <strong>Москва (SVO) → Сочи (AER)</strong>
+              <span class="muted">№ заказа 384609</span>
+            </div>
+            <div class="ticket-row small-muted">Вылет: 05 дек 2025 · 15:40 · Авиакомпания: Крылья</div>
+            <div class="ticket-actions">
+              <button class="btn btn-ghost">Посмотреть</button>
+              <button class="btn">Печать</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Empty state example -->
+        <div id="noTickets" class="muted" style="display:none">У вас пока нет активных билетов.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="yearProfile"></span> КрыльяОнлайн — Все права защищены</p>
+  </footer>
+
+  <script>
+    // simple dynamic year and placeholder user data (can be replaced by real data)
+    document.getElementById('yearProfile').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

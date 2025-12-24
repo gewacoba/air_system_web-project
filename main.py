@@ -4,7 +4,7 @@ from app.api.sample import router as sample_router
 from app.api.auth import router as auth_router
 from app.api.roles import router as role_router
 
-app = FastAPI(title="individual_project_template", version="0.0.1")
+app = FastAPI(title="Система бронирования авиабилетов", version="1.0.0")
 
 app.include_router(sample_router)
 app.include_router(auth_router)
