@@ -19,8 +19,15 @@
 3.  Установите зависимости из файла requirements.txt
     ```bash
     pip install -r requirements.txt
-4. Запустите сервер FastAPI:  
+4.  Создать файл .env
+    ```bash
+    SECRET_KEY=your_secret_key_here
+    ALGORITHM=HS256
+    ACCESS_TOKEN_EXPIRE_MINUTES=30
+    DB_NAME=air_system.db
+5. Запустите сервер FastAPI:  
     ```bash
    uvicorn main:app
-5. Перейти по ссылке:  
+6. Перейти по ссылке:  
 http://127.0.0.1:8000/web/index
+
