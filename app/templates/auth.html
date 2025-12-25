@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Вход / Регистрация — КрыльяОнлайн</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <a href="/" class="logo-link" title="КрыльяОнлайн">
+        <img src="/logo.png" alt="КрыльяОнлайн" class="logo">
+      </a>
+      <div class="brand">
+        <h1>КрыльяОнлайн</h1>
+        <p class="tag">Вход и регистрация</p>
+      </div>
+    </div>
+
+    <nav class="header-right">
+      <a class="btn btn-ghost" href="/" title="Назад">← На главную</a>
+    </nav>
+  </header>
+
+  <main class="main" style="max-width:420px;margin:28px auto;padding:18px">
+    <section class="ticket" style="flex-direction:column;align-items:stretch;gap:16px;padding:18px">
+      <div style="margin-bottom:4px">
+        <h2 style="margin:0 0 4px;font-size:20px">Добро пожаловать</h2>
+        <p class="small-muted" style="margin:0">Войдите в аккаунт или зарегистрируйтесь, чтобы бронировать билеты ещё быстрее.</p>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-bottom:4px">
+        <button type="button" id="tabLogin" class="btn btn-primary" style="flex:1;padding:8px 10px;border-radius:8px;font-size:14px">Вход</button>
+        <button type="button" id="tabRegister" class="btn btn-ghost" style="flex:1;padding:8px 10px;border-radius:8px;font-size:14px">Регистрация</button>
+      </div>
+
+      <form id="authForm" novalidate>
+        <input type="hidden" id="mode" value="login">
+
+        <label style="display:block;margin-bottom:10px">
+          <div class="small-muted" style="margin-bottom:6px">E-mail</div>
+          <input id="email" name="email" type="email" required placeholder="you@example.com"
+                 style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:15px">
+        </label>
+
+        <label style="display:block;margin-bottom:10px">
+          <div class="small-muted" style="margin-bottom:6px">Пароль</div>
+          <input id="password" name="password" type="password" required minlength="6" placeholder="Минимум 6 символов"
+                 style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:15px">
+        </label>
+
+        <label id="confirmWrapper" style="display:none;margin-bottom:10px">
+          <div class="small-muted" style="margin-bottom:6px">Повторите пароль</div>
+          <input id="passwordConfirm" name="passwordConfirm" type="password" minlength="6" placeholder="Повторите пароль"
+                 style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:15px">
+        </label>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+          <label class="small-muted" style="display:flex;align-items:center;gap:6px;font-size:12px">
+            <input type="checkbox" id="remember" style="margin:0">
+            Запомнить меня
+          </label>
+          <a href="/support.html" class="small-muted" style="font-size:12px;text-decoration:none;border-bottom:1px dashed rgba(0,0,0,0.2)">Нужна помощь?</a>
+        </div>
+
+        <div style="display:flex;justify-content:flex-end;margin-top:16px">
+          <button type="submit" id="submitBtn" class="btn btn-primary" style="padding:10px 18px;border-radius:10px">
+            Войти
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer" style="margin-top:12px">
+    <p>© <span id="yearAuth"></span> КрыльяОнлайн — Все права защищены</p>
+  </footer>
+
+  <script>
+    document.getElementById('yearAuth').textContent = new Date().getFullYear();
+
+    (function(){
+      const tabLogin = document.getElementById('tabLogin');
+      const tabRegister = document.getElementById('tabRegister');
+      const modeInput = document.getElementById('mode');
+      const confirmWrapper = document.getElementById('confirmWrapper');
+      const passwordConfirm = document.getElementById('passwordConfirm');
+      const submitBtn = document.getElementById('submitBtn');
+      const form = document.getElementById('authForm');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+
+      function setMode(mode){
+        modeInput.value = mode;
+        if (mode === 'login'){
+          confirmWrapper.style.display = 'none';
+          passwordConfirm.value = '';
+          passwordConfirm.removeAttribute('required');
+          tabLogin.classList.add('btn-primary');
+          tabLogin.classList.remove('btn-ghost');
+          tabRegister.classList.add('btn-ghost');
+          tabRegister.classList.remove('btn-primary');
+          submitBtn.textContent = 'Войти';
+        } else {
+          confirmWrapper.style.display = 'block';
+          passwordConfirm.setAttribute('required','required');
+          tabRegister.classList.add('btn-primary');
+          tabRegister.classList.remove('btn-ghost');
+          tabLogin.classList.add('btn-ghost');
+          tabLogin.classList.remove('btn-primary');
+          submitBtn.textContent = 'Зарегистрироваться';
+        }
+      }
+
+      tabLogin && tabLogin.addEventListener('click', ()=> setMode('login'));
+      tabRegister && tabRegister.addEventListener('click', ()=> setMode('register'));
+
+      function isValidEmail(value){
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+      }
+
+      form && form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const mode = modeInput.value;
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        const confirm = passwordConfirm.value;
+
+        if (!email || !isValidEmail(email)){
+          alert('Введите корректный e-mail.');
+          emailInput.focus();
+          return;
+        }
+        if (!password || password.length < 6){
+          alert('Пароль должен быть не короче 6 символов.');
+          passwordInput.focus();
+          return;
+        }
+        if (mode === 'register'){
+          if (!confirm || confirm.length < 6){
+            alert('Повторите пароль не короче 6 символов.');
+            passwordConfirm.focus();
+            return;
+          }
+          if (password !== confirm){
+            alert('Пароли не совпадают.');
+            passwordConfirm.focus();
+            return;
+          }
+          alert('Регистрация выполнена (демо). Теперь вы можете войти на сайт.');
+          setMode('login');
+          passwordConfirm.value = '';
+          passwordInput.value = '';
+          passwordInput.focus();
+        } else {
+          alert('Вход выполнен (демо). Здесь могла бы быть переадресация в профиль.');
+        }
+      });
+
+      // начальный режим — вход
+      setMode('login');
+    })();
+  </script>
+</body>
+</html>
