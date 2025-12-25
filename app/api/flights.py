@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from app.api.dependencies import DBDep
 from app.schemes.flights import SFlightAdd, SFlightGet
 from app.services.flights import FlightService
+from app.exceptions.base import ObjectNotFoundError
 
 router = APIRouter(prefix="/flights", tags=["Управление рейсами"])
 
@@ -12,7 +13,10 @@ async def create_new_flight(
     flight_data: SFlightAdd,
     db: DBDep,
 ) -> dict[str, str]:
-    await FlightService(db).add_flight(flight_data)
+    try:
+        await FlightService(db).add_flight(flight_data)
+    except ObjectNotFoundError as e:
+        raise e
     return {"status": "OK"}
 
 
@@ -39,7 +43,10 @@ async def update_flight(
     flight_data: SFlightAdd,
     id: int,
 ) -> dict[str, str]:
-    await FlightService(db).update_flight(id, flight_data)
+    try:
+        await FlightService(db).update_flight(id, flight_data)
+    except ObjectNotFoundError as e:
+        raise e
     return {"status": "OK"}
 
 
