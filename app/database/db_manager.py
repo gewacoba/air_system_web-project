@@ -3,6 +3,7 @@ from app.repositories.planes import PlaneRepository
 from app.repositories.roles import RolesRepository
 from app.repositories.users import UsersRepository
 from app.repositories.air_companies import AirCompanyRepository
+from app.repositories.cities import CityRepository
 
 
 class DBManager:
@@ -17,6 +18,7 @@ class DBManager:
         self.roles = RolesRepository(self.session)
         self.planes = PlaneRepository(self.session)
         self.air_companies = AirCompanyRepository(self.session)
+        self.cities = CityRepository(self.session)
         return self
 
     async def __aexit__(self, *args):
