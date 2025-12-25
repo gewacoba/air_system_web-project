@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from app.api.dependencies import DBDep
 from app.schemes.tickets import STicketAdd, STicketGet
 from app.services.tickets import TicketService
+from app.exceptions.base import ObjectNotFoundError
 
 router = APIRouter(prefix="/tickets", tags=["Управление билетами"])
 
@@ -12,7 +13,10 @@ async def create_new_ticket(
     ticket_data: STicketAdd,
     db: DBDep,
 ) -> dict[str, str]:
-    await TicketService(db).add_ticket(ticket_data)
+    try:
+        await TicketService(db).add_ticket(ticket_data)
+    except ObjectNotFoundError as e:
+        raise e
     return {"status": "OK"}
 
 
@@ -39,7 +43,10 @@ async def update_ticket(
     ticket_data: STicketAdd,
     id: int,
 ) -> dict[str, str]:
-    await TicketService(db).update_ticket(id, ticket_data)
+    try:
+        await TicketService(db).update_ticket(id, ticket_data)
+    except ObjectNotFoundError as e:
+        raise e
     return {"status": "OK"}
 
 
