@@ -1,4 +1,5 @@
 from app.database.database import async_session_maker
+from app.repositories.planes import PlaneRepository
 from app.repositories.roles import RolesRepository
 from app.repositories.users import UsersRepository
 
@@ -13,6 +14,7 @@ class DBManager:
         # Пример:
         self.users = UsersRepository(self.session)
         self.roles = RolesRepository(self.session)
+        self.planes = PlaneRepository(self.session)
         return self
 
     async def __aexit__(self, *args):
