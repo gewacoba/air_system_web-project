@@ -5,6 +5,7 @@ from app.repositories.users import UsersRepository
 from app.repositories.air_companies import AirCompanyRepository
 from app.repositories.cities import CityRepository
 from app.repositories.flights import FlightRepository
+from app.repositories.tickets import TicketRepository
 
 class DBManager:
     def __init__(self, session_factory: async_session_maker):
@@ -20,6 +21,7 @@ class DBManager:
         self.air_companies = AirCompanyRepository(self.session)
         self.cities = CityRepository(self.session)
         self.flights = FlightRepository(self.session)
+        self.tickets = TicketRepository(self.session)
         return self
 
     async def __aexit__(self, *args):

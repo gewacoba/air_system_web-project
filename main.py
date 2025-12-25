@@ -9,6 +9,7 @@ from app.api.planes import router as planes_router
 from app.api.air_companies import router as air_companies_router
 from app.api.cities import router as cities_router
 from app.api.flights import router as flights_router
+from app.api.tickets import router as tickets_router
 from app.api.web import router as web_router
 
 app = FastAPI(title="Система бронирования авиабилетов", version="1.0.0")
@@ -21,6 +22,7 @@ app.include_router(planes_router)
 app.include_router(air_companies_router)
 app.include_router(cities_router)
 app.include_router(flights_router)
+app.include_router(tickets_router)
 app.include_router(web_router)
 
 if __name__ == "__main__":
