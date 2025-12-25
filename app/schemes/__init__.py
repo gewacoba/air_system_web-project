@@ -17,7 +17,4 @@ __all__ = [
     "SRoleGet",
     "SRoleGetWithRels",
     "SUserGetWithRels",
-    "SAirCompanyAdd",
-    "SAirCompanyGet",
-    "SAirCompanyPatch",
 ]
